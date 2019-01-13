@@ -1,25 +1,26 @@
 dist: xenial
 sudo: required
 language: node_js
-jdk: 
-  - oraclejdk8
-  - oraclejdk11
-env:
-  - NODE_VERSION="8"
-  - NODE_VERSION="11"
+#jdk: 
+#  - oraclejdk8
+#  - oraclejdk11
+#env:
+#  - NODE_VERSION="0.8"
+#  - NODE_VERSION="0.10"
+#  - NODE_VERSION="0.11"
 matrix:
   include:
-    - env: NODE_VERSION="8"
+    - env: NODE_VERSION="0.8"
       jdk: oraclejdk8
-    - env: NODE_VERSION="10"
+    - env: NODE_VERSION="0.10"
       jdk: oraclejdk8
-    - env: NODE_VERSION="11"
+    - env: NODE_VERSION="0.11"
       jdk: oraclejdk8
-    - env: NODE_VERSION="8"
+    - env: NODE_VERSION="0.8"
       jdk: oraclejdk11
-    - env: NODE_VERSION="10"
+    - env: NODE_VERSION="0.10"
       jdk: oraclejdk11
-    - env: NODE_VERSION="11"
+    - env: NODE_VERSION="0.11"
       jdk: oraclejdk11
 addons:
   chrome: stable
@@ -31,6 +32,7 @@ before_script:
 before_install:
   - rm -rf ./node_modules package-lock.json
   - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
 install: "npm install"
 cache:
   directories:
