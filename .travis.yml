@@ -1,6 +1,6 @@
 dist: xenial
 sudo: required
-language: java
+language: node_js
 jdk: 
   - oraclejdk8
   - oraclejdk11
