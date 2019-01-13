@@ -1,13 +1,27 @@
 dist: xenial
 sudo: required
-language: node_js
-node_js:
-  - "8"
-  - "10"
-  - "11"
-jdk:
-  - oraclejdk8
-  - oraclejdk11
+language: java
+jdk: 
+ - oraclejdk8
+ - oraclejdk11
+env:
+ - NODE_VERSION="0.8"
+ - NODE_VERSION="0.10"
+ - NODE_VERSION="0.11"
+# matrix:
+#   include:
+#     - env: NODE_VERSION="0.8"
+#       jdk: oraclejdk8
+#     - env: NODE_VERSION="0.10"
+#       jdk: oraclejdk8
+#     - env: NODE_VERSION="0.11"
+#       jdk: oraclejdk8
+#     - env: NODE_VERSION="0.8"
+#       jdk: oraclejdk11
+#     - env: NODE_VERSION="0.10"
+#       jdk: oraclejdk11
+#     - env: NODE_VERSION="0.11"
+#       jdk: oraclejdk11
 addons:
   chrome: stable
   firefox: latest
@@ -16,7 +30,9 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start  
 before_install:
-  rm -rf ./node_modules package-lock.json
+  - rm -rf ./node_modules package-lock.json
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
 install: "npm install"
 cache:
   directories:
